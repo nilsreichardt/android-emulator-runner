@@ -171,7 +171,7 @@ async function run() {
       try {
         // move to custom working directory if set
         if (workingDirectory) {
-          exec.exec('sh', ['pushd', workingDirectory]);
+          exec.exec('sh', ['-c', 'pushd', workingDirectory]);
         }
         for (const preEmulatorLaunchScript of preEmulatorLaunchScripts) {
           // use array form to avoid various quote escaping problems
@@ -183,7 +183,7 @@ async function run() {
       } finally {
         if (workingDirectory) {
           // revert changing path to working directory
-          exec.exec('sh', ['popd']);
+          exec.exec('sh', ['-c', 'popd']);
         }
       }
     }
